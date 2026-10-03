@@ -1,6 +1,7 @@
 [Unit]
 Description=Tailscale AutoRunner
-After=network.target tailscaled.service
+Wants=network-online.target tailscaled.service
+After=network-online.target tailscaled.service
 
 [Service]
 Type=simple
@@ -8,6 +9,9 @@ ExecStart=/usr/bin/python3 /home/opeteer/TailscaleAutoRunner/main.py
 Restart=always
 RestartSec=10
 User=root
+
+# Tanpa batas percobaan (pantang menyerah walaupun router butuh waktu lama untuk hidup)
+StartLimitIntervalSec=0
 
 [Install]
 WantedBy=multi-user.target

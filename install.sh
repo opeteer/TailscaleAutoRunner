@@ -17,10 +17,10 @@ cp /home/opeteer/TailscaleAutoRunner/tailscale-autorunner.service /etc/systemd/s
 # Memuat ulang daemon systemd
 systemctl daemon-reload
 
-# Mengaktifkan dan memulai service
+# Mengaktifkan (auto-start saat boot) dan menjalankan service secara langsung
 systemctl enable tailscale-autorunner.service
 systemctl restart tailscale-autorunner.service
 
-echo "Instalasi selesai! Service tailscale-autorunner sedang berjalan."
-echo "Gunakan perintah berikut untuk mengecek log (realtime):"
-echo "  sudo journalctl -u tailscale-autorunner -f"
+echo "Instalasi selesai! Service tailscale-autorunner telah di-enable untuk otomatis berjalan saat booting."
+echo "Status service saat ini:"
+systemctl status tailscale-autorunner.service --no-pager
