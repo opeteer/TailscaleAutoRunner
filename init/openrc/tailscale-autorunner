@@ -1,0 +1,12 @@
+#!/sbin/openrc-run
+name="tailscale-autorunner"
+description="Tailscale AutoRunner Daemon"
+
+command="/usr/local/bin/tailscale-autorunner"
+command_background="yes"
+pidfile="/run/tailscale-autorunner.pid"
+
+depend() {
+    need net
+    after tailscale tailscaled
+}
